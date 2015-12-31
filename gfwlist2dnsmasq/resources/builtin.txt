@@ -1,0 +1,15 @@
+google.com
+google.co.jp
+google.co.hk
+google.com.tw
+google.com.sg
+github.com
+wikipedia.org
+blogspot.tw
+blogspot.jp
+blogspot.hk
+blogspot.sg
+blogspot.com
+youtube.com
+twitter.com
+facebook.com
