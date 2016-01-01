@@ -21,6 +21,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+from __future__ import print_function
 import pkgutil
 import base64
 import datetime
@@ -172,7 +173,11 @@ def parse_gfwlist(gfwlist):
 def reduce_domains(domains):
 	# reduce 'www.google.com' to 'google.com'
 	# remove invalid domains
-	tld_content = pkgutil.get_data('gfwlist2dnsmasq', 'resources/tld.txt').decode()
+	tld_content = pkgutil.get_data('gfwlist2dnsmasq', 'resources/tld.txt')
+	try:
+		tld_content = tld_content.decode()
+	except:
+		tld_content = tld_content
 	tlds = set(tld_content.splitlines(False))
 	new_domains = set()
 	for domain in domains:
@@ -220,11 +225,11 @@ def main():
 			with open(args.input, 'rb') as f:
 				content = f.read()
 		else:
-			print('Downloading gfwlist from ', gfwlist_url)
+			print('Downloading gfwlist from', gfwlist_url)
 			content = urlopen(gfwlist_url, timeout = 15).read()
 	
 	else:
-		print('Downloading gfwlist from ', gfwlist_url)
+		print('Downloading gfwlist from', gfwlist_url)
 		content = urlopen(gfwlist_url, timeout = 15).read()
 
 	if args.user_rule:
@@ -236,7 +241,7 @@ def main():
 				user_rule = f.read()
 		else:
 			# Yeah, it's an URL, try to download it
-			print('Downloading user rules file from ', args.user_rule)
+			print('Downloading user rules file from', args.user_rule)
 			user_rule = urlopen(args.user_rule, timeout = 15).read()
 
 	content = decode_gfwlist(content.decode())
