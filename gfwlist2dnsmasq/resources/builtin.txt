@@ -14,3 +14,4 @@ youtube.com
 twitter.com
 facebook.com
 1e100.net
+akamaihd.net
